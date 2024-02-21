@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5645df7380aa2f47bdfd393c889c644, type: 3}
+  m_Name: CardsConfig
+  m_EditorClassIdentifier: 
+  cardDatas:
+  - CardId: C2
+    CardSprite: {fileID: 21300000, guid: 5f722f1ce14241d459476acee25bb460, type: 3}
+  - CardId: C3
+    CardSprite: {fileID: 21300000, guid: 26a2ee411fbb1014780a3e63055f5675, type: 3}
+  - CardId: C4
+    CardSprite: {fileID: 21300000, guid: df29fcd9d08f3984b947c9b179e439ab, type: 3}
+  - CardId: C5
+    CardSprite: {fileID: 21300000, guid: 286b2883fa7572f4bae4e683ea499b32, type: 3}
+  - CardId: C6
+    CardSprite: {fileID: 21300000, guid: c420cce89c8a6f449908743f40bba4fd, type: 3}
+  - CardId: C7
+    CardSprite: {fileID: 21300000, guid: 0c676b7f392cab944b4580a8f10922eb, type: 3}
+  - CardId: C8
+    CardSprite: {fileID: 21300000, guid: aa951d7ec9fcc2c449e6e4cbe56fc2bd, type: 3}
+  - CardId: C9
+    CardSprite: {fileID: 21300000, guid: 5b9dfe75cbc3ff045bffa23a66047088, type: 3}
+  - CardId: C10
+    CardSprite: {fileID: 21300000, guid: 06986ac3171172844ac2e5e5e5f789a9, type: 3}
+  - CardId: CA
+    CardSprite: {fileID: 21300000, guid: b5312079e51538a4e8f452258618caff, type: 3}
+  - CardId: CJ
+    CardSprite: {fileID: 21300000, guid: 3e3fcc447c37d5d4cb45bf5fc7fb696d, type: 3}
+  - CardId: CQ
+    CardSprite: {fileID: 21300000, guid: 2670a49b6f7bb42429391690b2f021bd, type: 3}
+  - CardId: CK
+    CardSprite: {fileID: 21300000, guid: 3a7511ba81b96ac4bb18e43d1f5030c5, type: 3}
+  - CardId: D2
+    CardSprite: {fileID: 21300000, guid: 52c09b94dc6cba140af6be10e3904367, type: 3}
+  - CardId: D3
+    CardSprite: {fileID: 21300000, guid: 744d008e5e2f9cc4a837c4b2c4137156, type: 3}
+  - CardId: D4
+    CardSprite: {fileID: 21300000, guid: d3268d0661761014a8d2181a265da6b5, type: 3}
+  - CardId: D5
+    CardSprite: {fileID: 21300000, guid: e0e9bcdc5fd3eb848988ab423c933eab, type: 3}
+  - CardId: D6
+    CardSprite: {fileID: 21300000, guid: 46a02c332008f4948b26ebb6f258ab77, type: 3}
+  - CardId: D7
+    CardSprite: {fileID: 21300000, guid: bc21e64c03d8e0a4b94515c191c6c1c2, type: 3}
+  - CardId: D8
+    CardSprite: {fileID: 21300000, guid: 6012d3f8b4abd8149a7a483c29c0b9bd, type: 3}
+  - CardId: D9
+    CardSprite: {fileID: 21300000, guid: 21c05a5b6bed9b949b43e32b46e5bde5, type: 3}
+  - CardId: D10
+    CardSprite: {fileID: 21300000, guid: 00ca3dcc9b1a9bb42976306ce3c96cd0, type: 3}
+  - CardId: DA
+    CardSprite: {fileID: 21300000, guid: 8aeb959e3e23a774499b0b2d0475ead6, type: 3}
+  - CardId: DJ
+    CardSprite: {fileID: 21300000, guid: 78be60b14d487e3439e71edd96696a5c, type: 3}
+  - CardId: DQ
+    CardSprite: {fileID: 21300000, guid: 19cd007256c88be4f8a1a7c2a93706dd, type: 3}
+  - CardId: DK
+    CardSprite: {fileID: 21300000, guid: edaaad5520aeb9e4992c2357acf96898, type: 3}
+  - CardId: H2
+    CardSprite: {fileID: 21300000, guid: 6f7ade5dbf1e8e54db462a2951c3639b, type: 3}
+  - CardId: H3
+    CardSprite: {fileID: 21300000, guid: ba4a3d1a334666543bcec2c43bb5c895, type: 3}
+  - CardId: H4
+    CardSprite: {fileID: 21300000, guid: 992b53ec121901f42ab4f1ff8323ea65, type: 3}
+  - CardId: H5
+    CardSprite: {fileID: 21300000, guid: 4c751f15de2a8f24c822c7dd6bb9aed4, type: 3}
+  - CardId: H6
+    CardSprite: {fileID: 21300000, guid: 0dbfd95178438f8418d78b4fabe5711d, type: 3}
+  - CardId: H7
+    CardSprite: {fileID: 21300000, guid: 5265af80795eb1149b5034321a088952, type: 3}
+  - CardId: H8
+    CardSprite: {fileID: 21300000, guid: 5e7d616ea29f05849b35751680e86851, type: 3}
+  - CardId: H9
+    CardSprite: {fileID: 21300000, guid: 3badd09411186134895945491e8ff7f3, type: 3}
+  - CardId: H10
+    CardSprite: {fileID: 21300000, guid: a715c8f3a5af7a0439054c0db4e4a27b, type: 3}
+  - CardId: HA
+    CardSprite: {fileID: 21300000, guid: 43ff5db5d959d124aa185cb59de8d15a, type: 3}
+  - CardId: HJ
+    CardSprite: {fileID: 21300000, guid: 668b925d7ffc49d49a892c023f1197c9, type: 3}
+  - CardId: HQ
+    CardSprite: {fileID: 21300000, guid: f3e24612d0c57304598fdab949872b8f, type: 3}
+  - CardId: HK
+    CardSprite: {fileID: 21300000, guid: 48d26f2461715ab478f59f45f844c35d, type: 3}
+  - CardId: S2
+    CardSprite: {fileID: 21300000, guid: 1d21729893970374f9e20d4bcf5234c3, type: 3}
+  - CardId: S3
+    CardSprite: {fileID: 21300000, guid: 037f49118f82b2045a85a7e1375173a1, type: 3}
+  - CardId: S4
+    CardSprite: {fileID: 21300000, guid: e85db53c7433e3b42aefc55336bf4417, type: 3}
+  - CardId: S5
+    CardSprite: {fileID: 21300000, guid: bdfd811c4fd0d32478927706eda83c25, type: 3}
+  - CardId: S6
+    CardSprite: {fileID: 21300000, guid: 774f703db89393f4dad54a455accf534, type: 3}
+  - CardId: S7
+    CardSprite: {fileID: 21300000, guid: 4a098bbccad67954e94e50f15babd106, type: 3}
+  - CardId: S8
+    CardSprite: {fileID: 21300000, guid: e79a0c3f1075d2242919b73997296e94, type: 3}
+  - CardId: S9
+    CardSprite: {fileID: 21300000, guid: 7ef8f867e2a3a27438d62b31187a5095, type: 3}
+  - CardId: S10
+    CardSprite: {fileID: 21300000, guid: cf297a775fc118d4e8e2ef40eec7eb2d, type: 3}
+  - CardId: SA
+    CardSprite: {fileID: 21300000, guid: 3631e9dbc70dbe34eae841ca647b5f83, type: 3}
+  - CardId: SJ
+    CardSprite: {fileID: 21300000, guid: 5f2971a354b3cba40894320dee836347, type: 3}
+  - CardId: SQ
+    CardSprite: {fileID: 21300000, guid: 03ece10b25813194a87146fc16f5f111, type: 3}
+  - CardId: SK
+    CardSprite: {fileID: 21300000, guid: 70c9f84624522ef428eff077d6a09fce, type: 3}
