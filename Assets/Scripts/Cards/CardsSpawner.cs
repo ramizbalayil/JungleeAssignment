@@ -34,7 +34,7 @@ namespace junglee.cards
                 groupCardsHolder.AddCard(cardData);
             }
 
-            groupCardsHolder.RefreshWidth();
+            groupCardsHolder.RefreshWidth(true);
         }
 
         public void InitializeCardHolder(Deck deck)

@@ -62,5 +62,10 @@ namespace junglee.cards
         {
             transform.DOLocalMoveY(_cardOriginPosition.y, 0.25f);
         }
+
+        private void OnDestroy()
+        {
+            GroupButtonCardsAligner.CardSelectionReset -= DeSelectCard;
+        }
     }
 }
