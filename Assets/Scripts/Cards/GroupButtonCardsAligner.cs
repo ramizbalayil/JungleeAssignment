@@ -9,8 +9,11 @@ namespace junglee.cards
     public class GroupButtonCardsAligner : MonoBehaviour
     {
         public static Action<CardData> CardRemoved;
+        public static Action CardSelectionReset;
 
         [SerializeField] private Button _groupButton;
+        [SerializeField] private Button _resetButton;
+
 
         private List<CardData> _selectedcards;
         private CardsSpawner _spawner;
@@ -31,8 +34,15 @@ namespace junglee.cards
             _selectedcards = new List<CardData>();
             CardMediator.CardSelected += OnCardSelected;
             _groupButton.onClick.AddListener(OnGroupButtonPressed);
+            _resetButton.onClick.AddListener(OnResetButtonPressed);
 
             UpdateGroupButton();
+        }
+
+        private void OnResetButtonPressed()
+        {
+            CardSelectionReset?.Invoke();
+            ResetSelection();
         }
 
         private void OnGroupButtonPressed()
@@ -43,6 +53,11 @@ namespace junglee.cards
             }
 
             CardsSpawner.SpawnCards(_selectedcards);
+            ResetSelection();
+        }
+
+        private void ResetSelection()
+        {
             _selectedcards.Clear();
             UpdateGroupButton();
         }
@@ -55,7 +70,8 @@ namespace junglee.cards
 
         private void UpdateGroupButton()
         {
-            _groupButton.gameObject.SetActive(_selectedcards.Count > 0);
+            _groupButton.gameObject.SetActive(_selectedcards.Count > 1);
+            _resetButton.gameObject.SetActive(_selectedcards.Count > 1);
         }
     }
 }

@@ -22,6 +22,8 @@ namespace junglee.cards
         {
             _cardOriginPosition = transform.localPosition;
             _cardUI = GetComponent<Image>();
+
+            GroupButtonCardsAligner.CardSelectionReset += DeSelectCard;
         }
 
         public void SetData(CardData data)
@@ -47,8 +49,18 @@ namespace junglee.cards
 
         public void OnPointerDown(PointerEventData eventData)
         {
+            SelectCard();
+        }
+
+        public void SelectCard()
+        {
             transform.DOLocalMoveY(_cardOriginPosition.y + 50, 0.25f);
             CardSelected?.Invoke(CardData);
+        }
+
+        public void DeSelectCard()
+        {
+            transform.DOLocalMoveY(_cardOriginPosition.y, 0.25f);
         }
     }
 }
