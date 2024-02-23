@@ -5,17 +5,32 @@ using UnityEngine.EventSystems;
 
 namespace junglee.cards
 {
-    public class GroupCardsHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class GroupCardsHolder : MonoBehaviour, IDropHandler
     {
         [SerializeField] private SingleCardHolder _singleCardHolderPrefab;
 
         private RectTransform _rectT;
         private Dictionary<CardData, SingleCardHolder> _cardsInGroup;
+        private CardsAligner _aligner;
+        private CanvasGroup _canvasGroup;
+
+        private CardsAligner CardsAligner
+        {
+            get
+            {
+                if (_aligner == null)
+                {
+                    _aligner = CardsAligner.Instance;
+                }
+                return _aligner;
+            }
+        }
 
         private void Awake()
         {
             _rectT = transform as RectTransform;
             _cardsInGroup = new Dictionary<CardData, SingleCardHolder>();
+            _canvasGroup = GetComponent<CanvasGroup>();
         }
 
         public void RefreshWidth()
@@ -29,13 +44,14 @@ namespace junglee.cards
             _rectT.sizeDelta = new Vector2(width, _rectT.sizeDelta.y);
         }
 
-        public void AddCard(CardData data)
+        public void AddCard(CardData data, float canvasScaleFactor)
         {
             if (!_cardsInGroup.ContainsKey(data))
             {
                 SingleCardHolder obj = Instantiate(_singleCardHolderPrefab, transform);
                 _cardsInGroup.Add(data, obj);
-                obj.SetCard(data);
+                obj.SetCard(data, canvasScaleFactor);
+                obj.SetCanvasGroup(_canvasGroup);
             }
         }
 
@@ -44,6 +60,7 @@ namespace junglee.cards
             if (!_cardsInGroup.ContainsKey(obj.CardData))
             {
                 _cardsInGroup.Add(obj.CardData, obj);
+                obj.SetCanvasGroup(_canvasGroup);
             }
         }
 
@@ -64,14 +81,18 @@ namespace junglee.cards
             }
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public bool HasCard(SingleCardHolder singleCard)
         {
-            Debug.Log("Entered Group");
+            return _cardsInGroup.ContainsKey(singleCard.CardData);
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        public void OnDrop(PointerEventData eventData)
         {
-            Debug.Log("Exited Group");
+            if (eventData.pointerDrag != null)
+            {
+                SingleCardHolder singleCardHolder = eventData.pointerDrag.GetComponentInParent<SingleCardHolder>();
+                CardsAligner.AlignDraggedCard(this, singleCardHolder);
+            }
         }
     }
 }

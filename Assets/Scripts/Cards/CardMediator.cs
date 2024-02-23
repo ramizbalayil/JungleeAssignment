@@ -8,9 +8,10 @@ using UnityEngine.UI;
 namespace junglee.cards
 {
     [RequireComponent(typeof(Image))]
-    public class CardMediator : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler, IPointerUpHandler
+    public class CardMediator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         public Action<bool> CardSelected;
+        public Action<bool> CardDragged;
 
         private Vector3 _cardOriginPosition;
         private CardData _cardData;
@@ -18,6 +19,7 @@ namespace junglee.cards
         private bool _isDragging;
         private bool _isSelected;
         private RectTransform _rectT;
+        private float _canvasScaleFactor;
 
         public CardData CardData => _cardData;
 
@@ -31,21 +33,29 @@ namespace junglee.cards
             _isSelected = false;
         }
 
-        public void SetData(CardData data)
+        public void SetData(CardData data, float canvasSCaleFactor)
         {
             _cardData = data;
             _cardUI.sprite = data.CardSprite;
+            _canvasScaleFactor = canvasSCaleFactor;
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            _isDragging = true;
+            CardDragged?.Invoke(_isDragging);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            _isDragging = true;
-            _rectT.position = eventData.position;
+            _rectT.anchoredPosition += eventData.delta / _canvasScaleFactor;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             _isDragging = false;
+            CardDragged?.Invoke(_isDragging);
+            ResetCardPosition();
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -63,6 +73,11 @@ namespace junglee.cards
         {
             _isSelected = false;
             transform.DOLocalMoveY(_cardOriginPosition.y, 0.25f);
+        }
+
+        private void ResetCardPosition()
+        {
+            transform.DOLocalMove(_cardOriginPosition, 0.25f);
         }
 
         public void OnPointerUp(PointerEventData eventData)

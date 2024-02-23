@@ -355,6 +355,7 @@ MonoBehaviour:
   _cardsConfig: {fileID: 11400000, guid: c5f8c5ab66d72c34f990803bae9fa75c, type: 2}
   _groupCardsHolderPrefab: {fileID: 6023422372850600832, guid: 6a440253b9298d841828674efce728af, type: 3}
   _cardsHolder: {fileID: 1283177756}
+  _canvas: {fileID: 2138765873}
 --- !u!114 &138016337
 MonoBehaviour:
   m_ObjectHideFlags: 0

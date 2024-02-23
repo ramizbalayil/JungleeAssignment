@@ -1,4 +1,3 @@
-using junglee.config;
 using junglee.utils;
 using System.Collections.Generic;
 
@@ -59,17 +58,31 @@ namespace junglee.cards
 
             foreach (SingleCardHolder singleCard in _selectedcards)
             {
-                GroupCardsHolder oldParent = singleCard.transform.parent.GetComponent<GroupCardsHolder>();
-
-                singleCard.transform.SetParent(newParent.transform);
-
-                newParent.MoveCard(singleCard);
-
-                oldParent.RemoveCard(singleCard);
+                MoveCardToNewGroup(newParent, singleCard);
             }
 
             newParent.RefreshWidth();
             ClearSelection();
+        }
+
+        private void MoveCardToNewGroup(GroupCardsHolder newGroup, SingleCardHolder singleCard)
+        {
+            GroupCardsHolder oldParent = singleCard.transform.parent.GetComponent<GroupCardsHolder>();
+
+            singleCard.transform.SetParent(newGroup.transform);
+
+            newGroup.MoveCard(singleCard);
+
+            oldParent.RemoveCard(singleCard);
+        }
+
+        public void AlignDraggedCard(GroupCardsHolder groupHolder, SingleCardHolder draggedCard)
+        {
+            if (groupHolder.HasCard(draggedCard)) return;
+
+            draggedCard.SetBlockRayCast(true);
+            MoveCardToNewGroup(groupHolder, draggedCard);
+            groupHolder.RefreshWidth();
         }
     }
 

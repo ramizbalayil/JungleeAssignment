@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6613169299622096459}
   - component: {fileID: 7432343165579104076}
   - component: {fileID: 6023422372850600832}
+  - component: {fileID: 46559711443326472}
   m_Layer: 5
   m_Name: GroupCardsHolder
   m_TagString: Untagged
@@ -116,3 +117,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _singleCardHolderPrefab: {fileID: 1233918365034358470, guid: 531fc5f89b0ddd84db0c691f82b4713a, type: 3}
+--- !u!225 &46559711443326472
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491534391361496871}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

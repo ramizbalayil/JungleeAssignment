@@ -13,6 +13,7 @@ namespace junglee.cards
         private RectTransform _cardRectT;
         private CardsAligner _aligner;
         private CardData _cardData;
+        private CanvasGroup _canvasGroup;
 
         private CardsAligner CardsAligner
         {
@@ -39,6 +40,7 @@ namespace junglee.cards
             _rectT = transform as RectTransform;
             _cardRectT = _cardMediator.transform as RectTransform;
             _cardMediator.CardSelected += OnCardSelected;
+            _cardMediator.CardDragged += OnCardDragged;
         }
 
         private void OnCardSelected(bool status)
@@ -53,10 +55,29 @@ namespace junglee.cards
             }
         }
 
-        public void SetCard(CardData data)
+        private void OnCardDragged(bool status)
         {
-            _cardMediator.SetData(data);
+            if (status)
+            {
+                CardsAligner.ClearSelection();
+            }
+            SetBlockRayCast(!status);
+        }
+
+        public void SetBlockRayCast(bool status)
+        {
+            _canvasGroup.blocksRaycasts = status;
+        }
+
+        public void SetCard(CardData data, float canvasSCaleFactor)
+        {
+            _cardMediator.SetData(data, canvasSCaleFactor);
             _cardData = data;
+        }
+
+        public void SetCanvasGroup(CanvasGroup canvasGroup)
+        {
+            _canvasGroup = canvasGroup;
         }
 
         public void RemoveHolder()
@@ -77,6 +98,7 @@ namespace junglee.cards
         private void OnDestroy()
         {
             _cardMediator.CardSelected -= OnCardSelected;
+            _cardMediator.CardDragged -= OnCardDragged;
         }
     }
 }
