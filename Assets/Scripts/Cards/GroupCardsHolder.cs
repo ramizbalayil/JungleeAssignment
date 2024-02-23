@@ -1,11 +1,11 @@
-using DG.Tweening;
 using junglee.config;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace junglee.cards
 {
-    public class GroupCardsHolder : MonoBehaviour
+    public class GroupCardsHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private SingleCardHolder _singleCardHolderPrefab;
 
@@ -62,6 +62,16 @@ namespace junglee.cards
                     Destroy(gameObject);
                 }
             }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            Debug.Log("Entered Group");
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            Debug.Log("Exited Group");
         }
     }
 }
