@@ -1,56 +1,38 @@
 using junglee.config;
 using junglee.data;
-using System.Collections.Generic;
+using junglee.utils;
 using UnityEngine;
 
 namespace junglee.cards
 {
-    public class CardsSpawner : MonoBehaviour
+    public class CardsSpawner : Singleton<CardsSpawner>
     {
-        private static CardsSpawner instance;
-
-        public static CardsSpawner Instance => instance;
-
         [SerializeField] private CardsConfig _cardsConfig;
         [SerializeField] private GroupCardsHolder _groupCardsHolderPrefab;
         [SerializeField] private Transform _cardsHolder;
 
-        private void Awake()
+        protected override void Awake()
         {
-            if (instance == null)
-            {
-                instance = this;
-                return;
-            }
-            Destroy(gameObject);
-        }
-
-        public void SpawnCards(List<CardData> cardDatas)
-        {
-            GroupCardsHolder groupCardsHolder = Instantiate(_groupCardsHolderPrefab, _cardsHolder);
-
-            foreach (CardData cardData in cardDatas)
-            {
-                groupCardsHolder.AddCard(cardData);
-            }
-
-            groupCardsHolder.RefreshWidth(true);
+            base.Awake();
+            LoadDataMediator.SpawnLoadedCards += InitializeCardHolder;
         }
 
         public void InitializeCardHolder(Deck deck)
         {
-            SpawnCards(GetDeckData(deck));
+            GroupCardsHolder groupCardsHolder = SpawnGroupCardsHolder();
+
+            foreach (string cardID in deck.deck)
+            {
+                CardData cardData = GetCardData(cardID);
+                groupCardsHolder.AddCard(cardData);
+            }
+
+            groupCardsHolder.RefreshWidth();
         }
 
-        private List<CardData> GetDeckData(Deck deck)
+        public GroupCardsHolder SpawnGroupCardsHolder()
         {
-            List<CardData> data = new List<CardData>();
-
-            foreach (string cardId in deck.deck)
-            {
-                data.Add(GetCardData(cardId));
-            }
-            return data;
+            return Instantiate(_groupCardsHolderPrefab, _cardsHolder);
         }
 
         private CardData GetCardData(string cardId)
@@ -60,6 +42,12 @@ namespace junglee.cards
                 if (cardData.CardId == cardId) return cardData;
             }
             return null;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            LoadDataMediator.SpawnLoadedCards -= InitializeCardHolder;
         }
     }
 }

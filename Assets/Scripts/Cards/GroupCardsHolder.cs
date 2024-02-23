@@ -16,39 +16,9 @@ namespace junglee.cards
         {
             _rectT = transform as RectTransform;
             _cardsInGroup = new Dictionary<CardData, SingleCardHolder>();
-
-            GroupButtonCardsAligner.CardRemoved += OnCardRemoved;
         }
 
-        private void OnCardRemoved(CardData cardData)
-        {
-            if (_cardsInGroup.TryGetValue(cardData, out SingleCardHolder holder))
-            {
-                _cardsInGroup.Remove(cardData);
-                RemoveHolder(holder.transform, () => DestroySingleCardHolder(holder));
-
-                if (_cardsInGroup.Count != 0)
-                {
-                    RefreshWidth(false);
-                }
-            }
-        }
-
-        public void DestroySingleCardHolder(SingleCardHolder holder)
-        {
-            Destroy(holder.gameObject);
-            if (_cardsInGroup.Count == 0)
-            {
-                RemoveHolder(transform, () => Destroy(gameObject));
-            }
-        }
-
-        public void RemoveHolder(Transform tr, TweenCallback onComplete)
-        {
-            tr.DOScaleX(0, 0.25f).OnComplete(onComplete);
-        }
-
-        public void RefreshWidth(bool skipTween)
+        public void RefreshWidth()
         {
             SingleCardHolder card = transform.GetChild(0).GetComponent<SingleCardHolder>();
             float width = 0f;
@@ -56,15 +26,7 @@ namespace junglee.cards
             
             width += (obj_width * _cardsInGroup.Count) + (card.CardWidth - obj_width);
 
-            if (skipTween)
-            {
-                _rectT.sizeDelta = new Vector2(width, _rectT.sizeDelta.y);
-            }
-            else
-            {
-                _rectT.DOSizeDelta(new Vector2(width, _rectT.sizeDelta.y), 0.25f);
-            }
-
+            _rectT.sizeDelta = new Vector2(width, _rectT.sizeDelta.y);
         }
 
         public void AddCard(CardData data)
@@ -77,9 +39,29 @@ namespace junglee.cards
             }
         }
 
-        private void OnDestroy()
+        public void MoveCard(SingleCardHolder obj)
         {
-            GroupButtonCardsAligner.CardRemoved -= OnCardRemoved;
+            if (!_cardsInGroup.ContainsKey(obj.CardData))
+            {
+                _cardsInGroup.Add(obj.CardData, obj);
+            }
+        }
+
+        public void RemoveCard(SingleCardHolder obj)
+        {
+            if (_cardsInGroup.ContainsKey(obj.CardData))
+            {
+                _cardsInGroup.Remove(obj.CardData);
+
+                if (_cardsInGroup.Count != 0)
+                {
+                    RefreshWidth();
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }
