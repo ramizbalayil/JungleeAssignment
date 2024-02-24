@@ -44,13 +44,13 @@ namespace junglee.cards
             _rectT.sizeDelta = new Vector2(width, _rectT.sizeDelta.y);
         }
 
-        public void AddCard(CardData data, Canvas canvas)
+        public void AddCard(CardData data, Canvas canvas, Transform draggableCardHolder)
         {
             if (!_cardsInGroup.ContainsKey(data))
             {
                 SingleCardHolder obj = Instantiate(_singleCardHolderPrefab, transform);
                 _cardsInGroup.Add(data, obj);
-                obj.SetCard(data, canvas);
+                obj.SetCard(data, canvas, draggableCardHolder);
                 obj.SetCanvasGroup(_canvasGroup);
             }
         }
@@ -90,7 +90,7 @@ namespace junglee.cards
         {
             if (eventData.pointerDrag != null)
             {
-                SingleCardHolder singleCardHolder = eventData.pointerDrag.GetComponentInParent<SingleCardHolder>();
+                SingleCardHolder singleCardHolder = eventData.pointerDrag.GetComponent<CardMediator>().CardHolder;
                 CardsAligner.AlignDraggedCard(this, singleCardHolder);
             }
         }

@@ -20,30 +20,37 @@ namespace junglee.cards
         private bool _isSelected;
         private RectTransform _rectT;
         private Canvas _canvas;
+        private Transform _draggableCardHolder;
+        private SingleCardHolder _cardHolder;
 
         public CardData CardData => _cardData;
+        public SingleCardHolder CardHolder => _cardHolder;
 
         private void Awake()
         {
             _cardOriginPosition = transform.localPosition;
             _cardUI = GetComponent<Image>();
             _rectT = GetComponent<RectTransform>();
+            _cardHolder = transform.parent.GetComponent<SingleCardHolder>();
 
             _isDragging = false;
             _isSelected = false;
         }
 
-        public void SetData(CardData data, Canvas canvas)
+        public void SetData(CardData data, Canvas canvas, Transform draggableCardHolder)
         {
             _cardData = data;
             _cardUI.sprite = data.CardSprite;
             _canvas = canvas;
+            _draggableCardHolder = draggableCardHolder;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
             _isDragging = true;
             CardDragged?.Invoke(_isDragging);
+
+            transform.SetParent(_draggableCardHolder);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -55,6 +62,8 @@ namespace junglee.cards
         {
             _isDragging = false;
             CardDragged?.Invoke(_isDragging);
+            transform.SetParent(_cardHolder.transform);
+
             ResetCardPosition();
         }
 

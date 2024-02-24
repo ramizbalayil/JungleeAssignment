@@ -1,6 +1,5 @@
 using DG.Tweening;
 using junglee.config;
-using System;
 using UnityEngine;
 
 namespace junglee.cards
@@ -69,25 +68,15 @@ namespace junglee.cards
             _canvasGroup.blocksRaycasts = status;
         }
 
-        public void SetCard(CardData data, Canvas canvas)
+        public void SetCard(CardData data, Canvas canvas, Transform draggableCardHolder)
         {
-            _cardMediator.SetData(data, canvas);
+            _cardMediator.SetData(data, canvas, draggableCardHolder);
             _cardData = data;
         }
 
         public void SetCanvasGroup(CanvasGroup canvasGroup)
         {
             _canvasGroup = canvasGroup;
-        }
-
-        public void RemoveHolder()
-        {
-            transform.DOScaleX(0, 0.25f).OnComplete(OnRemoveHolderTweenComplete);
-        }
-
-        public void OnRemoveHolderTweenComplete()
-        {
-            Destroy(gameObject);
         }
 
         public void DeselectCard()

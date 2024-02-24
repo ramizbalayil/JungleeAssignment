@@ -10,6 +10,7 @@ namespace junglee.cards
         [SerializeField] private CardsConfig _cardsConfig;
         [SerializeField] private GroupCardsHolder _groupCardsHolderPrefab;
         [SerializeField] private Transform _cardsHolder;
+        [SerializeField] private Transform _draggableCardHolder;
         [SerializeField] private Canvas _canvas;
 
         protected override void Awake()
@@ -26,7 +27,7 @@ namespace junglee.cards
             foreach (string cardID in deck.deck)
             {
                 CardData cardData = GetCardData(cardID);
-                groupCardsHolder.AddCard(cardData, _canvas);
+                groupCardsHolder.AddCard(cardData, _canvas, _draggableCardHolder);
             }
 
             groupCardsHolder.RefreshWidth();
