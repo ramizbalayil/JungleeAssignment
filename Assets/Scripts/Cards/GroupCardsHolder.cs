@@ -44,13 +44,13 @@ namespace junglee.cards
             _rectT.sizeDelta = new Vector2(width, _rectT.sizeDelta.y);
         }
 
-        public void AddCard(CardData data, float canvasScaleFactor)
+        public void AddCard(CardData data, Canvas canvas)
         {
             if (!_cardsInGroup.ContainsKey(data))
             {
                 SingleCardHolder obj = Instantiate(_singleCardHolderPrefab, transform);
                 _cardsInGroup.Add(data, obj);
-                obj.SetCard(data, canvasScaleFactor);
+                obj.SetCard(data, canvas);
                 obj.SetCanvasGroup(_canvasGroup);
             }
         }

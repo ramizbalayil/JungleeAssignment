@@ -69,9 +69,9 @@ namespace junglee.cards
             _canvasGroup.blocksRaycasts = status;
         }
 
-        public void SetCard(CardData data, float canvasSCaleFactor)
+        public void SetCard(CardData data, Canvas canvas)
         {
-            _cardMediator.SetData(data, canvasSCaleFactor);
+            _cardMediator.SetData(data, canvas);
             _cardData = data;
         }
 

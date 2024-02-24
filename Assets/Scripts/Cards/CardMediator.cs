@@ -19,7 +19,7 @@ namespace junglee.cards
         private bool _isDragging;
         private bool _isSelected;
         private RectTransform _rectT;
-        private float _canvasScaleFactor;
+        private Canvas _canvas;
 
         public CardData CardData => _cardData;
 
@@ -33,11 +33,11 @@ namespace junglee.cards
             _isSelected = false;
         }
 
-        public void SetData(CardData data, float canvasSCaleFactor)
+        public void SetData(CardData data, Canvas canvas)
         {
             _cardData = data;
             _cardUI.sprite = data.CardSprite;
-            _canvasScaleFactor = canvasSCaleFactor;
+            _canvas = canvas;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -48,7 +48,7 @@ namespace junglee.cards
 
         public void OnDrag(PointerEventData eventData)
         {
-            _rectT.anchoredPosition += eventData.delta / _canvasScaleFactor;
+            _rectT.anchoredPosition += eventData.delta / _canvas.scaleFactor;
         }
 
         public void OnEndDrag(PointerEventData eventData)
