@@ -7,20 +7,6 @@ namespace junglee.cards
     {
         private List<SingleCardHolder> _selectedcards;
 
-        private CardsSpawner _spawner;
-
-        private CardsSpawner CardsSpawner
-        {
-            get
-            {
-                if (_spawner == null)
-                {
-                    _spawner = CardsSpawner.Instance;
-                }
-                return _spawner;
-            }
-        }
-
         protected override void Awake()
         {
             base.Awake();
@@ -54,7 +40,7 @@ namespace junglee.cards
 
         public void CreateGroupForSelectedCards()
         {
-            GroupCardsHolder newParent = CardsSpawner.SpawnGroupCardsHolder();
+            GroupCardsHolder newParent = GroupCardsHolderPool.Instance.GetGroupHolder();
 
             foreach (SingleCardHolder singleCard in _selectedcards)
             {

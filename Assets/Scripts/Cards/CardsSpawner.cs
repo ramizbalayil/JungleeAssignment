@@ -1,11 +1,10 @@
 using junglee.config;
 using junglee.data;
-using junglee.utils;
 using UnityEngine;
 
 namespace junglee.cards
 {
-    public class CardsSpawner : Singleton<CardsSpawner>
+    public class CardsSpawner : MonoBehaviour
     {
         [SerializeField] private CardsConfig _cardsConfig;
         [SerializeField] private GroupCardsHolder _groupCardsHolderPrefab;
@@ -13,16 +12,14 @@ namespace junglee.cards
         [SerializeField] private Transform _draggableCardHolder;
         [SerializeField] private Canvas _canvas;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-
             LoadDataMediator.SpawnLoadedCards += InitializeCardHolder;
         }
 
         public void InitializeCardHolder(Deck deck)
         {
-            GroupCardsHolder groupCardsHolder = SpawnGroupCardsHolder();
+            GroupCardsHolder groupCardsHolder = GroupCardsHolderPool.Instance.GetGroupHolder();
 
             foreach (string cardID in deck.deck)
             {
@@ -47,9 +44,8 @@ namespace junglee.cards
             return null;
         }
 
-        protected override void OnDestroy()
+        private void OnDestroy()
         {
-            base.OnDestroy();
             LoadDataMediator.SpawnLoadedCards -= InitializeCardHolder;
         }
     }

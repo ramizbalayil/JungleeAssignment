@@ -1202,6 +1202,7 @@ GameObject:
   - component: {fileID: 1362377028}
   - component: {fileID: 1362377030}
   - component: {fileID: 1362377031}
+  - component: {fileID: 1362377032}
   m_Layer: 5
   m_Name: Screen
   m_TagString: Untagged
@@ -1307,6 +1308,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textAsset: {fileID: 4900000, guid: d6d95e979b6b42f4a931ba9b7810a453, type: 3}
+--- !u!114 &1362377032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362377026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff559bf2cfed114da08bba939ac79fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groupCardsHolderPrefab: {fileID: 6023422372850600832, guid: 6a440253b9298d841828674efce728af, type: 3}
+  _cardsHolder: {fileID: 1283177756}
+  _defaultCapacity: 10
+  _maxCapacity: 15
 --- !u!1 &1693172459
 GameObject:
   m_ObjectHideFlags: 0

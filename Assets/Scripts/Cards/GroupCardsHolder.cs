@@ -2,17 +2,20 @@ using junglee.config;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Pool;
 
 namespace junglee.cards
 {
     public class GroupCardsHolder : MonoBehaviour, IDropHandler
     {
         [SerializeField] private SingleCardHolder _singleCardHolderPrefab;
+        [SerializeField] private Transform _cardsHolder;
 
         private RectTransform _rectT;
         private Dictionary<CardData, SingleCardHolder> _cardsInGroup;
         private CardsAligner _aligner;
         private CanvasGroup _canvasGroup;
+        private IObjectPool<GroupCardsHolder> _objectPool;
 
         private CardsAligner CardsAligner
         {
@@ -42,6 +45,11 @@ namespace junglee.cards
             width += (obj_width * _cardsInGroup.Count) + (card.CardWidth - obj_width);
 
             _rectT.sizeDelta = new Vector2(width, _rectT.sizeDelta.y);
+        }
+
+        public void SetPool(IObjectPool<GroupCardsHolder> objectPool)
+        {
+            _objectPool = objectPool;
         }
 
         public void AddCard(CardData data, Canvas canvas, Transform draggableCardHolder)
@@ -76,7 +84,7 @@ namespace junglee.cards
                 }
                 else
                 {
-                    Destroy(gameObject);
+                    _objectPool.Release(this);
                 }
             }
         }

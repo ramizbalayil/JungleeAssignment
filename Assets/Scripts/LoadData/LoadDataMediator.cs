@@ -16,6 +16,10 @@ namespace junglee.data
         private void Awake()
         {
             _cardData = LoadData();
+        }
+
+        private void Start()
+        {
             InitializeCardHolder();
         }
 
