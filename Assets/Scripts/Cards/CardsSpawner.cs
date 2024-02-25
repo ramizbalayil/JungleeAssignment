@@ -7,8 +7,6 @@ namespace junglee.cards
     public class CardsSpawner : MonoBehaviour
     {
         [SerializeField] private CardsConfig _cardsConfig;
-        [SerializeField] private GroupCardsHolder _groupCardsHolderPrefab;
-        [SerializeField] private Transform _cardsHolder;
         [SerializeField] private Transform _draggableCardHolder;
         [SerializeField] private Canvas _canvas;
 
@@ -28,11 +26,6 @@ namespace junglee.cards
             }
 
             groupCardsHolder.RefreshWidth();
-        }
-
-        public GroupCardsHolder SpawnGroupCardsHolder()
-        {
-            return Instantiate(_groupCardsHolderPrefab, _cardsHolder);
         }
 
         private CardData GetCardData(string cardId)

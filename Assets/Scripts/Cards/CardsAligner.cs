@@ -6,6 +6,19 @@ namespace junglee.cards
     public class CardsAligner : Singleton<CardsAligner>
     {
         private List<SingleCardHolder> _selectedcards;
+        private GroupCardsHolderPool _groupCardsHolderPool;
+
+        private GroupCardsHolderPool GroupCardsHolderPool
+        {
+            get
+            {
+                if (_groupCardsHolderPool == null)
+                {
+                    _groupCardsHolderPool = GroupCardsHolderPool.Instance;
+                }
+                return _groupCardsHolderPool;
+            }
+        }
 
         protected override void Awake()
         {
@@ -40,7 +53,7 @@ namespace junglee.cards
 
         public void CreateGroupForSelectedCards()
         {
-            GroupCardsHolder newParent = GroupCardsHolderPool.Instance.GetGroupHolder();
+            GroupCardsHolder newParent = GroupCardsHolderPool.GetGroupHolder();
 
             foreach (SingleCardHolder singleCard in _selectedcards)
             {

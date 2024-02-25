@@ -9,7 +9,6 @@ namespace junglee.cards
     public class GroupCardsHolder : MonoBehaviour, IDropHandler
     {
         [SerializeField] private SingleCardHolder _singleCardHolderPrefab;
-        [SerializeField] private Transform _cardsHolder;
 
         private RectTransform _rectT;
         private Dictionary<CardData, SingleCardHolder> _cardsInGroup;
