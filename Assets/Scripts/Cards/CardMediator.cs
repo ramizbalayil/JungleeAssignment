@@ -48,7 +48,9 @@ namespace junglee.cards
         public void OnBeginDrag(PointerEventData eventData)
         {
             _isDragging = true;
+
             CardDragged?.Invoke(_isDragging);
+            CreateGroupsHolder.ShowCreateGroupHolder?.Invoke(_isDragging);
 
             transform.SetParent(_draggableCardHolder);
         }
@@ -61,9 +63,11 @@ namespace junglee.cards
         public void OnEndDrag(PointerEventData eventData)
         {
             _isDragging = false;
-            CardDragged?.Invoke(_isDragging);
-            transform.SetParent(_cardHolder.transform);
 
+            CardDragged?.Invoke(_isDragging);
+            CreateGroupsHolder.ShowCreateGroupHolder?.Invoke(_isDragging);
+
+            transform.SetParent(_cardHolder.transform);
             ResetCardPosition();
         }
 

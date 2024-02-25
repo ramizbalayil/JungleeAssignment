@@ -64,7 +64,15 @@ namespace junglee.cards
 
         public void AlignDraggedCard(GroupCardsHolder groupHolder, SingleCardHolder draggedCard)
         {
-            if (groupHolder.HasCard(draggedCard)) return;
+            if (groupHolder == null)
+            {
+                groupHolder = GroupCardsHolderPool.Instance.GetGroupHolder();
+            }
+
+            if (groupHolder.HasCard(draggedCard))
+            {
+                return;
+            }
 
             draggedCard.SetBlockRayCast(true);
             MoveCardToNewGroup(groupHolder, draggedCard);
